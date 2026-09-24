@@ -61,6 +61,7 @@
     .slot:last-child{border-bottom:0}
     .slot .time{font-family:var(--mono);font-size:14px;font-weight:800}
     .slot .name{font-size:18px;font-weight:700}
+    .slot .name small{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--muted);margin-left:8px;white-space:nowrap}
     .venue-link{display:inline-flex;align-items:center;min-height:32px;margin-left:8px;padding:4px 8px;border:2px solid currentColor;font-family:var(--mono);font-size:12px;font-weight:800;text-decoration:none;vertical-align:middle}
     .venue-link:hover,.venue-link:focus-visible{background:var(--ink);color:var(--lemon);outline:none}
     .slot .duration{font-family:var(--mono);font-size:12px;text-align:right;color:var(--muted)}
@@ -146,7 +147,7 @@
   <div class="quickfacts" aria-label="주요 시간">
     <div class="fact"><small>Band rehearsal</small><b>16:30</b></div>
     <div class="fact"><small>Doors</small><b>18:30</b></div>
-    <div class="fact"><small>Show</small><b>19:00</b></div>
+    <div class="fact"><small>Show</small><b>18:30</b></div>
     <div class="fact"><small>Afterparty end</small><b>23:30</b></div>
   </div>
 
@@ -172,8 +173,7 @@
         <div class="slot" data-start="16:30" data-end="17:50"><div class="time">16:30—17:50</div><div class="name">로보토미 &amp; 더 브레인즈 리허설</div><div class="duration">80 MIN</div></div>
         <div class="slot" data-kind="change" data-start="17:50" data-end="18:00"><div class="time">17:50—18:00</div><div class="name">셋 체인지</div><div class="duration">10 MIN</div></div>
         <div class="slot" data-start="18:00" data-end="18:30"><div class="time">18:00—18:30</div><div class="name">한상철 리허설</div><div class="duration">30 MIN</div></div>
-        <div class="slot" data-start="18:30" data-end="19:00"><div class="time">18:30—19:00</div><div class="name">입장</div><div class="duration">30 MIN</div></div>
-        <div class="slot" data-kind="show" data-start="19:00" data-end="19:30"><div class="time">19:00—19:30</div><div class="name">한상철 · 오프닝</div><div class="duration">30 MIN</div></div>
+        <div class="slot" data-kind="show" data-start="18:30" data-end="19:30"><div class="time">18:30—19:30</div><div class="name">한상철 · 오프닝 <small>관객 입장 병행</small></div><div class="duration">60 MIN</div></div>
         <div class="slot" data-kind="change" data-start="19:30" data-end="19:40"><div class="time">19:30—19:40</div><div class="name">셋 체인지</div><div class="duration">10 MIN</div></div>
         <div class="slot" data-kind="show" data-start="19:40" data-end="20:50"><div class="time">19:40—20:50</div><div class="name">로보토미 &amp; 더 브레인즈</div><div class="duration">70 MIN</div></div>
         <div class="slot" data-start="20:50" data-end="21:30"><div class="time">20:50—21:30</div><div class="name">뒷정리</div><div class="duration">40 MIN</div></div>
