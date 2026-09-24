@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8ff37">
+  <meta name="description" content="LOBOTOME & The Brains — LEMON: actuallycameout 현장 운영 페이지">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>LOBOTOME & The Brains — LEMON: actuallycameout</title>
+  <style>
+    :root {
+      --lemon:#e8ff37; --ink:#11110f; --paper:#f3f0e8; --white:#fffef8;
+      --red:#ff4d36; --muted:#6d6c65; --line:#1b1b18; --soft:#dedbd1;
+      --shadow:6px 6px 0 var(--ink); --radius:0px;
+      --display:"Arial Black","Avenir Next Condensed","Helvetica Neue",sans-serif;
+      --body:"Avenir Next","Apple SD Gothic Neo","Noto Sans KR","Helvetica Neue",sans-serif;
+      --mono:"SFMono-Regular","Roboto Mono",Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.45;padding-bottom:76px}
+    a{color:inherit}
+    button,a{touch-action:manipulation}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;background:var(--ink);color:var(--white);border-bottom:4px solid var(--lemon)}
+    .topbar-inner{height:52px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+    .liveclock{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;white-space:nowrap}
+    .dot{width:9px;height:9px;background:var(--lemon);border-radius:50%;box-shadow:0 0 0 3px rgba(232,255,55,.16)}
+    header{padding:52px 0 34px;background:var(--lemon);border-bottom:3px solid var(--ink)}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:36px;align-items:end}
+    .kicker{font-family:var(--mono);text-transform:uppercase;font-size:13px;font-weight:700;letter-spacing:.14em;margin:0 0 14px}
+    h1{font-family:var(--display);font-size:clamp(42px,8vw,100px);line-height:.84;letter-spacing:-.065em;text-transform:uppercase;margin:0;max-width:900px}
+    h1 span{display:block;font-size:.49em;letter-spacing:-.035em;margin-top:14px}
+    .dateblock{border:3px solid var(--ink);background:var(--white);padding:20px;box-shadow:var(--shadow);text-transform:uppercase}
+    .dateblock .month{font-family:var(--mono);font-size:13px;letter-spacing:.12em}
+    .dateblock .day{font-family:var(--display);font-size:88px;line-height:.9;letter-spacing:-.08em}
+    .dateblock .year{font-family:var(--mono);font-size:14px;margin-top:8px}
+    .quickfacts{display:grid;grid-template-columns:repeat(4,1fr);border-left:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+    .fact{background:var(--white);padding:17px 20px;border-right:3px solid var(--ink)}
+    .fact b{display:block;font-family:var(--display);font-size:22px;letter-spacing:-.03em}
+    .fact small{font-family:var(--mono);text-transform:uppercase;color:var(--muted);letter-spacing:.08em}
+    main{padding:34px 0 80px}
+    section{scroll-margin-top:68px;margin-bottom:48px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:3px solid var(--ink);padding-bottom:10px;margin-bottom:18px}
+    h2{font-family:var(--display);font-size:clamp(32px,5vw,58px);line-height:.95;letter-spacing:-.055em;text-transform:uppercase;margin:0}
+    .section-note{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right}
+    .guest-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .guest-card{border:3px solid var(--ink);background:var(--white);padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .guest-card.paid{background:var(--ink);color:var(--white);box-shadow:6px 6px 0 var(--lemon)}
+    .guest-label{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;opacity:.72}
+    .guest-card h3{font-family:var(--display);font-size:34px;text-transform:uppercase;margin:6px 0 20px;letter-spacing:-.04em}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{min-height:46px;border:2px solid currentColor;padding:11px 15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--mono);font-size:13px;font-weight:700;text-decoration:none;background:transparent;cursor:pointer}
+    .btn.primary{background:var(--lemon);color:var(--ink);border-color:var(--ink)}
+    .btn:hover,.btn:focus-visible{transform:translate(-2px,-2px);box-shadow:3px 3px 0 currentColor;outline:none}
+    .privacy{margin:18px 0 0;font-size:13px;color:var(--muted)}
+    .timeline{border:3px solid var(--ink);background:var(--white)}
+    .slot{display:grid;grid-template-columns:130px 1fr 92px;gap:18px;align-items:center;min-height:70px;padding:12px 18px;border-bottom:2px solid var(--soft);position:relative}
+    .slot:last-child{border-bottom:0}
+    .slot .time{font-family:var(--mono);font-size:14px;font-weight:800}
+    .slot .name{font-size:18px;font-weight:700}
+    .venue-link{display:inline-flex;align-items:center;min-height:32px;margin-left:8px;padding:4px 8px;border:2px solid currentColor;font-family:var(--mono);font-size:12px;font-weight:800;text-decoration:none;vertical-align:middle}
+    .venue-link:hover,.venue-link:focus-visible{background:var(--ink);color:var(--lemon);outline:none}
+    .slot .duration{font-family:var(--mono);font-size:12px;text-align:right;color:var(--muted)}
+    .slot .state{display:none}
+    .slot[data-kind="show"]{background:var(--lemon)}
+    .slot[data-kind="move"],.slot[data-kind="change"]{background:#ece9df}
+    .slot.is-current{background:var(--red);color:#fff}
+    .slot.is-current .duration{color:#fff}
+    .slot.is-current:before{content:"NOW";position:absolute;left:-3px;top:-18px;background:var(--ink);color:var(--lemon);font:700 11px var(--mono);padding:4px 8px}
+    .slot.is-past{opacity:.52}
+    .slot.is-next:after{content:"NEXT";position:absolute;right:14px;top:8px;background:var(--ink);color:var(--white);font:700 10px var(--mono);padding:3px 6px}
+    .docs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .tech-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    details{border:3px solid var(--ink);background:var(--white)}
+    summary{list-style:none;cursor:pointer;min-height:58px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;font-family:var(--display);font-size:24px;text-transform:uppercase}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-family:var(--mono);font-size:24px}
+    details[open] summary{background:var(--ink);color:var(--lemon)}
+    details[open] summary:after{content:"−"}
+    .rider-body{padding:18px}
+    .rider-group + .rider-group{margin-top:18px;padding-top:16px;border-top:2px solid var(--soft)}
+    .rider-group h4{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 8px;color:var(--muted)}
+    .rider-group.need h4{display:inline-block;background:var(--lemon);color:var(--ink);padding:4px 7px}
+    ul{padding-left:20px;margin:8px 0 0}
+    li{margin:6px 0}
+    .setlist{border-top:3px solid var(--ink)}
+    .track{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:15px;align-items:baseline;padding:14px 10px;border-bottom:2px solid var(--soft);background:var(--white)}
+    .track:nth-child(even){background:#ece9df}
+    .track.no-song{background:var(--ink);color:var(--lemon)}
+    .track-no{font-family:var(--mono);font-size:13px;color:var(--muted)}
+    .no-song .track-no{color:var(--lemon)}
+    .track-title{font-size:18px;font-weight:800;overflow-wrap:anywhere}
+    .track-title small{font-weight:500;color:var(--muted);margin-left:7px}
+    .no-song .track-title small{color:var(--white)}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .tag{font:700 10px var(--mono);border:1.5px solid currentColor;padding:3px 6px;text-transform:uppercase;white-space:nowrap}
+    .tag.hot{background:var(--red);color:#fff;border-color:var(--red)}
+    .footer{border-top:3px solid var(--ink);padding:24px 0 100px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+    .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;background:var(--ink);border-top:3px solid var(--lemon);padding-bottom:env(safe-area-inset-bottom)}
+    .bottomnav-inner{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}
+    .bottomnav a{min-height:58px;color:var(--white);text-decoration:none;display:flex;align-items:center;justify-content:center;font:700 11px var(--mono);text-transform:uppercase;border-right:1px solid #444}
+    .bottomnav a:last-child{border-right:0}
+    .bottomnav a:hover,.bottomnav a:focus-visible{background:var(--lemon);color:var(--ink);outline:none}
+    .toast{position:fixed;z-index:50;left:50%;bottom:82px;transform:translate(-50%,20px);background:var(--ink);color:var(--white);border:2px solid var(--lemon);padding:11px 16px;font:700 12px var(--mono);opacity:0;pointer-events:none;transition:.18s ease}
+    .toast.on{opacity:1;transform:translate(-50%,0)}
+    @media (max-width:760px){
+      .wrap{width:min(100% - 22px,1180px)} header{padding:34px 0 26px}
+      .hero-grid{grid-template-columns:1fr;gap:26px}.dateblock{width:190px}.dateblock .day{font-size:62px}
+      .quickfacts{grid-template-columns:1fr 1fr}.fact{border-top:3px solid var(--ink)}.fact small{font-size:10px;letter-spacing:.035em;overflow-wrap:anywhere}
+      .guest-grid,.tech-grid{grid-template-columns:1fr}
+      .slot{grid-template-columns:98px 1fr;padding:12px}.slot .duration{display:none}.slot .name{font-size:16px}.venue-link{display:flex;width:max-content;margin:7px 0 0;min-height:36px}
+      .track{grid-template-columns:38px minmax(0,1fr)}.tags{grid-column:2;justify-content:flex-start}.track-title small{display:block;margin:2px 0 0}
+      .section-head{align-items:start}.section-note{max-width:120px}
+    }
+    @media print{
+      .topbar,.bottomnav,.guest-grid,.privacy,.toast{display:none!important}body{padding:0;background:#fff}.wrap{width:100%}
+      header{padding:20px 0}.hero-grid{grid-template-columns:1fr 170px}h1{font-size:52px}.dateblock{box-shadow:none}.quickfacts{break-inside:avoid}
+      main{padding:20px 0}section{break-inside:avoid;margin-bottom:24px}.tech-grid{grid-template-columns:1fr 1fr}details:not([open]) .rider-body{display:block}details summary:after{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toast,.btn{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="eyebrow">Staff / Artist / Crew only</div>
+      <div class="liveclock"><span class="dot"></span><span id="clock">KST --:--:--</span></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">LEMON presents · Production sheet</p>
+        <h1>LOBOTOME<br>&amp; The Brains<span>&lt;LEMON: actuallycameout&gt;</span></h1>
+      </div>
+      <div class="dateblock" aria-label="공연일 2026년 9월 27일 일요일">
+        <div class="month">September · Sun</div><div class="day">27</div><div class="year">2026 · KST</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="quickfacts" aria-label="주요 시간">
+    <div class="fact"><small>Band rehearsal</small><b>16:30</b></div>
+    <div class="fact"><small>Doors</small><b>18:30</b></div>
+    <div class="fact"><small>Show</small><b>19:00</b></div>
+    <div class="fact"><small>Afterparty end</small><b>23:30</b></div>
+  </div>
+
+  <main class="wrap">
+    <section id="guests">
+      <div class="section-head"><h2>Guest access</h2><div class="section-note">관계자용 링크<br>외부 공유 주의</div></div>
+      <div class="guest-grid">
+        <article class="guest-card paid">
+          <div class="guest-label">Paid guest</div><h3>유료 게스트</h3>
+          <div class="actions"><a class="btn primary" href="https://wack.moss.events/guest1234" target="_blank" rel="noopener">링크 열기 ↗</a><button class="btn" data-copy="https://wack.moss.events/guest1234">링크 복사</button></div>
+        </article>
+        <article class="guest-card">
+          <div class="guest-label">Free guest</div><h3>무료 게스트</h3>
+          <div class="actions"><a class="btn primary" href="https://wack.moss.events/guest0987" target="_blank" rel="noopener">링크 열기 ↗</a><button class="btn" data-copy="https://wack.moss.events/guest0987">링크 복사</button></div>
+        </article>
+      </div>
+      <p class="privacy">게스트 등록에 필요한 사람에게만 전달해 주세요. 링크는 새 창에서 열립니다.</p>
+    </section>
+
+    <section id="schedule">
+      <div class="section-head"><h2>Run of show</h2><div class="section-note">2026.09.27<br>Asia/Seoul</div></div>
+      <div class="timeline" id="timeline">
+        <div class="slot" data-start="16:30" data-end="17:50"><div class="time">16:30—17:50</div><div class="name">로보토미 &amp; 더 브레인즈 리허설</div><div class="duration">80 MIN</div></div>
+        <div class="slot" data-kind="change" data-start="17:50" data-end="18:00"><div class="time">17:50—18:00</div><div class="name">셋 체인지</div><div class="duration">10 MIN</div></div>
+        <div class="slot" data-start="18:00" data-end="18:30"><div class="time">18:00—18:30</div><div class="name">한상철 리허설</div><div class="duration">30 MIN</div></div>
+        <div class="slot" data-start="18:30" data-end="19:00"><div class="time">18:30—19:00</div><div class="name">입장</div><div class="duration">30 MIN</div></div>
+        <div class="slot" data-kind="show" data-start="19:00" data-end="19:30"><div class="time">19:00—19:30</div><div class="name">한상철 · 오프닝</div><div class="duration">30 MIN</div></div>
+        <div class="slot" data-kind="change" data-start="19:30" data-end="19:40"><div class="time">19:30—19:40</div><div class="name">셋 체인지</div><div class="duration">10 MIN</div></div>
+        <div class="slot" data-kind="show" data-start="19:40" data-end="20:50"><div class="time">19:40—20:50</div><div class="name">로보토미 &amp; 더 브레인즈</div><div class="duration">70 MIN</div></div>
+        <div class="slot" data-start="20:50" data-end="21:30"><div class="time">20:50—21:30</div><div class="name">뒷정리</div><div class="duration">40 MIN</div></div>
+        <div class="slot" data-kind="move" data-start="21:30" data-end="21:40"><div class="time">21:30—21:40</div><div class="name">뒷풀이 이동</div><div class="duration">10 MIN</div></div>
+        <div class="slot" data-kind="show" data-start="21:40" data-end="23:30"><div class="time">21:40—23:30</div><div class="name">뒷풀이 <a class="venue-link" href="https://map.naver.com/p/entry/place/35032616?placePath=%2Fhome%3Ffrom%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202609241458%26locale%3Dko%26svcName%3Dmap_pcv5&amp;c=15.00,0,0,0,dh" target="_blank" rel="noopener">을지로 한국관 ↗</a></div><div class="duration">110 MIN</div></div>
+      </div>
+    </section>
+
+    <section id="rider">
+      <div class="section-head"><h2>Tech rider</h2><div class="section-note">지참 / 필요장비<br>원문 기준</div></div>
+      <div class="docs"><a class="btn" href="assets/LOBOTOME_and_The_Brains_Tech_Rider.pdf" target="_blank">테크라이더 PDF ↗</a></div>
+      <div class="tech-grid">
+        <details open><summary>LOBOTOME</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>랩탑 Audient iD44 (스테레오 2ch)</li><li>Ableton Push 2</li><li>Behringer HA400 헤드폰 분배기</li><li>ipTime UH508</li><li>멀티탭 12구</li><li>TS/TRS 케이블 2ea</li><li>XLR to RCA 케이블 2ea</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>가로 1200mm × 세로 600mm 이상의 스탠딩 테이블</li></ul></div>
+        </div></details>
+        <details open><summary>Moon Ki</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>Perkons HD-01 (모노 1ch)</li><li>Waldorf Blofeld (스테레오 2ch)</li><li>Behringer TD-3 (모노 1ch)</li><li>MACKIE MIX12FX</li><li>멀티탭 5구</li><li>TS 케이블 4ea</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>가로 800mm × 세로 600mm 이상의 스탠딩 테이블</li></ul></div>
+        </div></details>
+        <details><summary>Pishu</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>MPC One+ (스테레오 2ch)</li><li>Launchkey 49 MK3 (USB out)</li><li>아이패드</li><li>TS 케이블 2ea</li><li>USB Cable 1ea</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>파워 1구 사용 (MPC One+)</li><li>건반 스탠드 1ea</li><li>MPC One+ 올릴 스탠드 (랩탑 스탠드)</li><li>보면대</li></ul></div>
+        </div></details>
+        <details><summary>Coziest</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>NI Komplete Kontrol MK1</li><li>USB Cable 1ea</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>건반 스탠드 1ea</li></ul></div>
+        </div></details>
+        <details><summary>sinn davin</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>Boss VE-22</li><li>SHURE SM57 1ea</li><li>XLR 케이블 1ea</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>XLR 케이블 1ea</li></ul></div>
+        </div></details>
+        <details><summary>HWI</summary><div class="rider-body">
+          <div class="rider-group"><h4>지참장비</h4><ul><li>TC Helicon Voicelive Touch 2</li></ul></div>
+          <div class="rider-group need"><h4>필요장비</h4><ul><li>유선 마이크 1ea</li><li>XLR 케이블 1ea</li><li>TRS 케이블 2ea</li></ul></div>
+        </div></details>
+      </div>
+    </section>
+
+    <section id="setlist">
+      <div class="section-head"><h2>Setlist</h2><div class="section-note">17 cues<br>70-minute slot</div></div>
+      <div class="docs"><a class="btn" href="assets/LEMON_actuallycameout_Setlist.pdf" target="_blank">셋리스트 PDF ↗</a></div>
+      <div class="setlist">
+        <div class="track"><div class="track-no">01</div><div class="track-title">fiatlux <small>빛이 있으라</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">02</div><div class="track-title">eyeofprovidence <small>전시안</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">03</div><div class="track-title">allmyfreaks <small>얼라들아</small></div><div class="tags"></div></div>
+        <div class="track no-song"><div class="track-no">04</div><div class="track-title">멘트</div><div class="tags"><span class="tag">TALK</span></div></div>
+        <div class="track"><div class="track-no">05</div><div class="track-title">wakeup <small>일어나 · feat. sinn davin</small></div><div class="tags"><span class="tag">FEATURE</span></div></div>
+        <div class="track"><div class="track-no">06</div><div class="track-title">whatdoesyoursoullooklike (pt. 88888888) <small>거울보기</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">07</div><div class="track-title">iamtotallygoing2hell4this</div><div class="tags"><span class="tag hot">미공개곡</span></div></div>
+        <div class="track"><div class="track-no">08</div><div class="track-title">whyalwaysme <small>왜나만</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">09</div><div class="track-title">spinebuster <small>등골브레이커</small></div><div class="tags"></div></div>
+        <div class="track no-song"><div class="track-no">10</div><div class="track-title">멘트</div><div class="tags"><span class="tag">TALK</span></div></div>
+        <div class="track"><div class="track-no">11</div><div class="track-title">sentfrommygalaxyS26ultra <small>우주로부터 · feat. HWI</small></div><div class="tags"><span class="tag">FEATURE</span></div></div>
+        <div class="track"><div class="track-no">12</div><div class="track-title">#CHOERRYBRINGSMEHERE</div><div class="tags"><span class="tag hot">미공개곡</span></div></div>
+        <div class="track"><div class="track-no">13</div><div class="track-title">alljustazansang <small>그건 제 잔상입니다만</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">14</div><div class="track-title">themostcaucasiantrackiveevermade</div><div class="tags"><span class="tag hot">미공개곡</span></div></div>
+        <div class="track no-song"><div class="track-no">15</div><div class="track-title">멘트</div><div class="tags"><span class="tag">TALK</span></div></div>
+        <div class="track"><div class="track-no">16</div><div class="track-title">alligatorsnappingturtle <small>악어거북</small></div><div class="tags"></div></div>
+        <div class="track"><div class="track-no">17</div><div class="track-title">doslife (2014) <small>도시생활</small></div><div class="tags"><span class="tag">ENCORE</span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap">LOBOTOME &amp; The Brains · LEMON: actuallycameout · 2026.09.27<br>Source: supplied timetable, tech rider and setlist. Keep this page within staff / artist / crew.</div></footer>
+  <nav class="bottomnav" aria-label="페이지 섹션"><div class="bottomnav-inner"><a href="#guests">Guests</a><a href="#schedule">Schedule</a><a href="#rider">Rider</a><a href="#setlist">Setlist</a></div></nav>
+  <div class="toast" id="toast" role="status" aria-live="polite">링크를 복사했습니다.</div>
+
+  <script>
+    const EVENT_DATE = '2026-09-27';
+    const clock = document.getElementById('clock');
+    const toast = document.getElementById('toast');
+    const slots = [...document.querySelectorAll('.slot')];
+    const fmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    function kstParts(date){
+      const parts = new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(date);
+      return Object.fromEntries(parts.map(p=>[p.type,p.value]));
+    }
+    function tick(){
+      const now = new Date(); clock.textContent = `KST ${fmt.format(now)}`;
+      const p = kstParts(now); const today = `${p.year}-${p.month}-${p.day}`; const mins = Number(p.hour)*60+Number(p.minute);
+      slots.forEach(s=>s.classList.remove('is-current','is-past','is-next'));
+      if(today < EVENT_DATE) { if(slots[0]) slots[0].classList.add('is-next'); return; }
+      if(today > EVENT_DATE) { slots.forEach(s=>s.classList.add('is-past')); return; }
+      let markedNext=false;
+      for(const s of slots){
+        const toMin=v=>{const [h,m]=v.split(':').map(Number);return h*60+m};
+        const start=toMin(s.dataset.start), end=toMin(s.dataset.end);
+        if(mins>=end) s.classList.add('is-past');
+        else if(mins>=start && mins<end) s.classList.add('is-current');
+        else if(!markedNext){s.classList.add('is-next');markedNext=true;}
+      }
+    }
+    tick(); setInterval(tick,1000);
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click', async()=>{
+      try{await navigator.clipboard.writeText(btn.dataset.copy);toast.textContent='링크를 복사했습니다.'}
+      catch{toast.textContent='복사할 수 없습니다. 링크 열기를 이용해 주세요.'}
+      toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800);
+    }));
+  </script>
+</body>
+</html>
